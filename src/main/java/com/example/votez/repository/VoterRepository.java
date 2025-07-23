@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface VoterRepository extends JpaRepository<Voter, Long> {
 
     boolean existsByEmail(String email);
-    Optional<Voter> findByEmailAndSecretCode(String email, String secretCode);
+    Optional<Voter> findByEmail(String email);
+
 
 }

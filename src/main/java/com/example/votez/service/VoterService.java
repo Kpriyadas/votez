@@ -42,9 +42,6 @@ public class VoterService {
             logger.info("Setting hasVoted to false as it was null");
         }
 
-        // Generate a 6-digit secret code for login (optional security)
-        String secretCode = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-        voter.setSecretCode(secretCode);
 
         Voter saved = voterRepository.save(voter);
         logger.info("Voter registered successfully with ID: {}", saved.getId());
@@ -98,7 +95,10 @@ public class VoterService {
         voterRepository.deleteById(id);
         logger.info("Voter deleted successfully, ID: {}", id);
     }
-    public Optional<Voter> validateVoter(String email, String secretCode) {
-        return voterRepository.findByEmailAndSecretCode(email, secretCode);
+    public Optional<Voter> validateVoter(String email) {
+        logger.info("Validating voter with email: {}", email);
+        return voterRepository.findByEmail(email);
     }
+
+
 }

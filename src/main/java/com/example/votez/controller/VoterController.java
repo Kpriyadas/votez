@@ -37,12 +37,11 @@ public class VoterController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
         String email = loginData.get("email");
-        String secretCode = loginData.get("secretCode");
-
-        return voterService.validateVoter(email, secretCode)
+        return voterService.validateVoter(email)
                 .map(voter -> ResponseEntity.ok().body("Login successful for " + voter.getName()))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials"));
     }
+
 
     @GetMapping
     public ResponseEntity<List<Voter>> getAllVoters() {

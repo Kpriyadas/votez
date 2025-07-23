@@ -22,8 +22,6 @@ public class Voter {
     @Email(message = "invalid email")
     private  String email;
 
-    @Column(nullable = false)
-    private String secretCode;
 
     @NotNull
     private Boolean hasVoted = false;
